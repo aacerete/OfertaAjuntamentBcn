@@ -190,7 +190,7 @@ public class OfertaPublicaAPI {
     public static ArrayList<Selection> getSelections() {
 
 
-        Uri builtUri = Uri.parse(BASE_URL_ES);
+        Uri builtUri = Uri.parse(BASE_URL_CA);
 
         return CridaApi(builtUri);
 
