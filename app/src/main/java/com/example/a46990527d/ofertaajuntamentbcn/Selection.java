@@ -8,18 +8,18 @@ import java.util.ArrayList;
 
 public class Selection {
 
-    private Proves sollicitudsParticipacions;
-    private ArrayList<Proves> convocatoriesProvesEntrevistes;
+    private ArrayList<Proves> sollicitudsParticipacions = null;
+    private ArrayList<Proves> convocatoriesProvesEntrevistes = null;
     private String numExpedient;
     private int nombrePlaces;
     private String fiPresentacio;
-    private ArrayList<Proves> resultatsProvesEntrevistes;
+    private ArrayList<Proves> resultatsProvesEntrevistes = null;
     private String iniciPresentacio;
-    private ArrayList<Proves> convocatories;
-    private ArrayList<Proves> llistatsAdmesosExclosos;
-    private String    ens;
+    private ArrayList<Proves> convocatories = null;
+    private ArrayList<Proves> llistatsAdmesosExclosos = null;
+    private String ens;
     private String publicacio;
-    private ArrayList<Proves> resolucionsConvocatories;
+    private ArrayList<Proves> resolucionsConvocatories = null;
     private String dataPublicacio;
     private String idioma;
     private String tipus;
@@ -27,12 +27,12 @@ public class Selection {
     public Selection() {
     }
 
-    public Proves getSollicitudsParticipacions() {
-        return sollicitudsParticipacions;
+    public void setSollicitudsParticipacions(ArrayList<Proves> sollicitudsParticipacions) {
+        this.sollicitudsParticipacions = sollicitudsParticipacions;
     }
 
-    public void setSollicitudsParticipacions(Proves sollicitudsParticipacions) {
-        this.sollicitudsParticipacions = sollicitudsParticipacions;
+    public ArrayList<Proves> getSollicitudsParticipacions() {
+        return sollicitudsParticipacions;
     }
 
     public ArrayList<Proves> getConvocatoriesProvesEntrevistes() {
