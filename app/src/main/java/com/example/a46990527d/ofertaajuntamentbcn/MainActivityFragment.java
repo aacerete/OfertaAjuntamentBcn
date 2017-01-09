@@ -70,7 +70,7 @@ public class MainActivityFragment extends Fragment {
                         i.putExtra("concurs", "tots");
                         startActivity(i);
 
-                 
+
                         break;
                 }
             }
