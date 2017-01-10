@@ -19,6 +19,20 @@ public class OfertaPublicaAPI {
     private static final String BASE_URL_CA = "https://apidata.barcelona.cat/opendata/oferta-publica/ca";
     private static final String BASE_URL_ES = "https://apidata.barcelona.cat/opendata/oferta-publica/es";
 
+
+    public static ArrayList<Selection> getSelections() {
+
+
+        Uri builtUri = Uri.parse(BASE_URL_CA);
+
+
+
+        return CridaApi(builtUri);
+
+
+    }
+
+
     public static ArrayList <Selection> CridaApi  ( Uri builtUri ){
 
         try {
@@ -187,13 +201,6 @@ public class OfertaPublicaAPI {
     }
 
 
-    public static ArrayList<Selection> getSelections() {
 
 
-        Uri builtUri = Uri.parse(BASE_URL_CA);
-
-        return CridaApi(builtUri);
-
-
-    }
 }

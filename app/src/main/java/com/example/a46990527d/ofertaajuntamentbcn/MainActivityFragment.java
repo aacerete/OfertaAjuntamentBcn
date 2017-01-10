@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,12 @@ public class MainActivityFragment extends Fragment {
                 switch (v.getId()) {
                     case R.id.btnCercar:
                         //what to put here
+
+
+
+                        String result = OfertaPublicaAPI.getSelections().toString();
+
+                        Log.d("DEBUG",result);
 
                         Intent i = new Intent(getContext(), ResultadoActivity.class);
                         i.putExtra("ajuntament", "tots");
