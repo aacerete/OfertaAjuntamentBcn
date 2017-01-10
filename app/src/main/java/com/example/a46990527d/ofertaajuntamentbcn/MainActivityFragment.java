@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.os.AsyncTask;
+
+import java.util.ArrayList;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -55,6 +58,7 @@ public class MainActivityFragment extends Fragment {
         spConcurs.setAdapter(concursAdapter);
 
 
+
         //button
 
         Button btnCercar = (Button) view.findViewById(R.id.btnCercar);
@@ -66,11 +70,8 @@ public class MainActivityFragment extends Fragment {
                     case R.id.btnCercar:
                         //what to put here
 
-
-
-                        String result = OfertaPublicaAPI.getSelections().toString();
-
-                        Log.d("DEBUG",result);
+                        RefreshDataTask tarea = new RefreshDataTask();
+                        tarea.execute();
 
                         Intent i = new Intent(getContext(), ResultadoActivity.class);
                         i.putExtra("ajuntament", "tots");
@@ -85,6 +86,20 @@ public class MainActivityFragment extends Fragment {
 
         return view;
     }
+
+    //metode que s'executara en segon pla i fara la crida a l'api
+       private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Selection>> {
+                @Override
+                protected ArrayList<Selection> doInBackground(Void... voids) {
+
+                        ArrayList <Selection> result = OfertaPublicaAPI.getSelections();
+
+                       Log.d("DEBUG", result.toString());
+
+                                return result;
+                    }
+
+            }
 
 
 }

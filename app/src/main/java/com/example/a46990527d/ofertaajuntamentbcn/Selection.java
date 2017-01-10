@@ -11,7 +11,7 @@ public class Selection {
     private ArrayList<Proves> sollicitudsParticipacions = null;
     private ArrayList<Proves> convocatoriesProvesEntrevistes = null;
     private String numExpedient;
-    private int nombrePlaces;
+    private String nombrePlaces;
     private String fiPresentacio;
     private ArrayList<Proves> resultatsProvesEntrevistes = null;
     private String iniciPresentacio;
@@ -51,11 +51,11 @@ public class Selection {
         this.numExpedient = numExpedient;
     }
 
-    public int getNombrePlaces() {
+    public String getNombrePlaces() {
         return nombrePlaces;
     }
 
-    public void setNombrePlaces(int nombrePlaces) {
+    public void setNombrePlaces(String nombrePlaces) {
         this.nombrePlaces = nombrePlaces;
     }
 

@@ -81,11 +81,24 @@ public class OfertaPublicaAPI {
                 Proves solicitudParticipacio = new Proves();
                 JSONObject objetosolicitudParticipacio = JSONArraySelections.getJSONObject(j);
 
-                solicitudParticipacio.setUrl(objetosolicitudParticipacio.getString("url"));
-                solicitudParticipacio.setDoc(objetosolicitudParticipacio.getString("doc"));
-                solicitudParticipacio.setTitle(objetosolicitudParticipacio.getString("title"));
-                solicitudParticipacio.setAvis(objetosolicitudParticipacio.getBoolean("avis"));
-                solicitudParticipacio.setNoPublicarTransparencia(objetosolicitudParticipacio.getBoolean("noPublicarTransparencia"));
+                if (solicitudParticipacio.getUrl()==null){
+                    solicitudParticipacio.setUrl("");
+                }else{
+                    solicitudParticipacio.setUrl(objetosolicitudParticipacio.getString("url"));
+                }
+                if (solicitudParticipacio.getDoc()==null){
+                    solicitudParticipacio.setDoc("");
+                }else{
+                    solicitudParticipacio.setDoc(objetosolicitudParticipacio.getString("doc"));
+                }
+
+                if (solicitudParticipacio.getTitle()==null){
+                    solicitudParticipacio.setTitle("Sense títol");
+                }else{
+                    solicitudParticipacio.setTitle(objetosolicitudParticipacio.getString("title"));
+                }
+
+
 
                 sollicitudsParticipacions.add(solicitudParticipacio);
             }
@@ -100,17 +113,30 @@ public class OfertaPublicaAPI {
 
                 JSONObject objectConvocatoria = JSONArraySelections.getJSONObject(j);
 
-                convocatoriaProvesEntrevistes.setUrl(objectConvocatoria.getString("url"));
-                convocatoriaProvesEntrevistes.setDoc(objectConvocatoria.getString("doc"));
-                convocatoriaProvesEntrevistes.setTitle(objectConvocatoria.getString("title"));
-                convocatoriaProvesEntrevistes.setAvis(objectConvocatoria.getBoolean("avis"));
-                convocatoriaProvesEntrevistes.setNoPublicarTransparencia(objectConvocatoria.getBoolean("noPublicarTransparencia"));
+                if (convocatoriaProvesEntrevistes.getUrl()==null){
+                    convocatoriaProvesEntrevistes.setUrl("");
+                }else{
+                    convocatoriaProvesEntrevistes.setUrl(objectConvocatoria.getString("url"));
+                }
+                if (convocatoriaProvesEntrevistes.getDoc()==null){
+                    convocatoriaProvesEntrevistes.setDoc("");
+                }else{
+                    convocatoriaProvesEntrevistes.setDoc(objectConvocatoria.getString("doc"));
+                }
+
+                if (convocatoriaProvesEntrevistes.getTitle()==null){
+                    convocatoriaProvesEntrevistes.setTitle("Sense títol");
+                }else{
+                    convocatoriaProvesEntrevistes.setTitle(objectConvocatoria.getString("title"));
+                }
+
+
 
                 convocatoriesProvesEntrevistes.add(convocatoriaProvesEntrevistes);
             }
 
             selection.setNumExpedient(objectProves.getString("numExpedient"));
-            selection.setNombrePlaces(objectProves.getInt("nombrePlaces"));
+            selection.setNombrePlaces(objectProves.getString("nombrePlaces"));
             selection.setFiPresentacio(objectProves.getString("fiPresentacio"));
 
             JSONArray resultatsProvesArray = objectProves.getJSONArray("resultatsProvesEntrevistes");
@@ -122,11 +148,25 @@ public class OfertaPublicaAPI {
 
                 JSONObject objectResultats = JSONArraySelections.getJSONObject(j);
 
-                resultat.setUrl(objectResultats.getString("url"));
-                resultat.setDoc(objectResultats.getString("doc"));
-                resultat.setTitle(objectResultats.getString("title"));
-                resultat.setAvis(objectResultats.getBoolean("avis"));
-                resultat.setNoPublicarTransparencia(objectResultats.getBoolean("noPublicarTransparencia"));
+                if (resultat.getUrl()==null){
+                    resultat.setUrl("");
+                }else{
+                    resultat.setUrl(objectResultats.getString("url"));
+                }
+                if (resultat.getDoc()==null){
+                    resultat.setDoc("");
+                }else{
+                    resultat.setDoc(objectResultats.getString("doc"));
+                }
+
+                if (resultat.getTitle()==null){
+                    resultat.setTitle("Sense títol");
+                }else{
+                    resultat.setTitle(objectResultats.getString("title"));
+                }
+
+
+
 
                 resultats.add(resultat);
             }
@@ -142,11 +182,25 @@ public class OfertaPublicaAPI {
 
                 JSONObject objectConvocatories = JSONArraySelections.getJSONObject(j);
 
-                resultatConvocatoria.setUrl(objectConvocatories.getString("url"));
-                resultatConvocatoria.setDoc(objectConvocatories.getString("doc"));
-                resultatConvocatoria.setTitle(objectConvocatories.getString("title"));
-                resultatConvocatoria.setAvis(objectConvocatories.getBoolean("avis"));
-                resultatConvocatoria.setNoPublicarTransparencia(objectConvocatories.getBoolean("noPublicarTransparencia"));
+                if (resultatConvocatoria.getUrl()==null){
+                    resultatConvocatoria.setUrl("");
+                }else{
+                    resultatConvocatoria.setUrl(objectConvocatories.getString("url"));
+                }
+                if (resultatConvocatoria.getDoc()==null){
+                    resultatConvocatoria.setDoc("");
+                }else{
+                    resultatConvocatoria.setDoc(objectConvocatories.getString("doc"));
+                }
+
+                if (resultatConvocatoria.getTitle()==null){
+                    resultatConvocatoria.setTitle("Sense títol");
+                }else{
+                    resultatConvocatoria.setTitle(objectConvocatories.getString("title"));
+                }
+
+
+
 
                 resultatsConvocatories.add(resultatConvocatoria);
             }
@@ -160,11 +214,25 @@ public class OfertaPublicaAPI {
 
                 JSONObject objectAdmesosExclosos = JSONArraySelections.getJSONObject(j);
 
-                llistaAdmesosExclosos.setUrl(objectAdmesosExclosos.getString("url"));
-                llistaAdmesosExclosos.setDoc(objectAdmesosExclosos.getString("doc"));
-                llistaAdmesosExclosos.setTitle(objectAdmesosExclosos.getString("title"));
-                llistaAdmesosExclosos.setAvis(objectAdmesosExclosos.getBoolean("avis"));
-                llistaAdmesosExclosos.setNoPublicarTransparencia(objectAdmesosExclosos.getBoolean("noPublicarTransparencia"));
+                if (llistaAdmesosExclosos.getUrl()==null){
+                    llistaAdmesosExclosos.setUrl("");
+                }else{
+                    llistaAdmesosExclosos.setUrl(objectAdmesosExclosos.getString("url"));
+                }
+                if (llistaAdmesosExclosos.getDoc()==null){
+                    llistaAdmesosExclosos.setDoc("");
+                }else{
+                    llistaAdmesosExclosos.setDoc(objectAdmesosExclosos.getString("doc"));
+                }
+
+                if (llistaAdmesosExclosos.getTitle()==null){
+                    llistaAdmesosExclosos.setTitle("Sense títol");
+                }else{
+                    llistaAdmesosExclosos.setTitle(objectAdmesosExclosos.getString("title"));
+                }
+
+
+
 
                 llistatsAdmesosExclosos.add(llistaAdmesosExclosos);
             }
@@ -181,11 +249,25 @@ public class OfertaPublicaAPI {
 
                 JSONObject objectresolucionsConvocatoriesArray = JSONArraySelections.getJSONObject(j);
 
-                resolucioConvocatoria.setUrl(objectresolucionsConvocatoriesArray.getString("url"));
-                resolucioConvocatoria.setDoc(objectresolucionsConvocatoriesArray.getString("doc"));
-                resolucioConvocatoria.setTitle(objectresolucionsConvocatoriesArray.getString("title"));
-                resolucioConvocatoria.setAvis(objectresolucionsConvocatoriesArray.getBoolean("avis"));
-                resolucioConvocatoria.setNoPublicarTransparencia(objectresolucionsConvocatoriesArray.getBoolean("noPublicarTransparencia"));
+                if (resolucioConvocatoria.getUrl()==null){
+                    resolucioConvocatoria.setUrl("");
+                }else{
+                    resolucioConvocatoria.setUrl(objectresolucionsConvocatoriesArray.getString("url"));
+                }
+                if (resolucioConvocatoria.getDoc()==null){
+                    resolucioConvocatoria.setDoc("");
+                }else{
+                    resolucioConvocatoria.setDoc(objectresolucionsConvocatoriesArray.getString("doc"));
+                }
+
+                if (resolucioConvocatoria.getTitle()==null){
+                    resolucioConvocatoria.setTitle("Sense títol");
+                }else{
+                    resolucioConvocatoria.setTitle(objectresolucionsConvocatoriesArray.getString("title"));
+                }
+
+
+
 
                 resolucionsConvocatories.add(resolucioConvocatoria);
             }

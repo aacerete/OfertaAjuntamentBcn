@@ -9,8 +9,7 @@ public class Proves {
     String url;
     String doc;
     String title;
-    boolean avis;
-    boolean noPublicarTransparencia;
+
 
     public Proves() {
     }
@@ -39,21 +38,7 @@ public class Proves {
         this.title = title;
     }
 
-    public boolean isAvis() {
-        return avis;
-    }
 
-    public void setAvis(boolean avis) {
-        this.avis = avis;
-    }
-
-    public boolean isNoPublicarTransparencia() {
-        return noPublicarTransparencia;
-    }
-
-    public void setNoPublicarTransparencia(boolean noPublicarTransparencia) {
-        this.noPublicarTransparencia = noPublicarTransparencia;
-    }
 
     @Override
     public String toString() {
@@ -61,8 +46,6 @@ public class Proves {
                 "url='" + url + '\'' +
                 ", doc='" + doc + '\'' +
                 ", title='" + title + '\'' +
-                ", avis=" + avis +
-                ", noPublicarTransparencia=" + noPublicarTransparencia +
                 '}';
     }
 }
