@@ -70,6 +70,7 @@ public class MainActivityFragment extends Fragment {
                     case R.id.btnCercar:
                         //what to put here
 
+                        //asynktask
                         RefreshDataTask tarea = new RefreshDataTask();
                         tarea.execute();
 
