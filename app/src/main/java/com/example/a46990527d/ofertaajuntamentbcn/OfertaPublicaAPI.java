@@ -25,13 +25,9 @@ public class OfertaPublicaAPI {
 
         Uri builtUri = Uri.parse(BASE_URL_CA);
 
-
-
         return CridaApi(builtUri);
 
-
     }
-
 
     public static ArrayList <Selection> CridaApi  ( Uri builtUri ){
 
@@ -65,6 +61,7 @@ public class OfertaPublicaAPI {
     public static ArrayList<Selection> ConvertirEnSelection(JSONObject JsonObjectselection) throws JSONException {
 
         ArrayList<Selection> selections = new ArrayList<>();
+
         JSONArray JSONArraySelections = JsonObjectselection.getJSONArray("Seleccions");
 
         for (int i = 0; i < JSONArraySelections.length(); i++) {
@@ -74,203 +71,37 @@ public class OfertaPublicaAPI {
 
 
             JSONArray sollicitudsParticipacionsArray = objectProves.getJSONArray("sollicitudsParticipacions");
-            ArrayList<Proves> sollicitudsParticipacions = new ArrayList<>();
-
-            for ( int j = 0; j < sollicitudsParticipacionsArray.length(); j++) {
-
-                Proves solicitudParticipacio = new Proves();
-                JSONObject objetosolicitudParticipacio = JSONArraySelections.getJSONObject(j);
-
-                if (solicitudParticipacio.getUrl()==null){
-                    solicitudParticipacio.setUrl("");
-                }else{
-                    solicitudParticipacio.setUrl(objetosolicitudParticipacio.getString("url"));
-                }
-                if (solicitudParticipacio.getDoc()==null){
-                    solicitudParticipacio.setDoc("");
-                }else{
-                    solicitudParticipacio.setDoc(objetosolicitudParticipacio.getString("doc"));
-                }
-
-                if (solicitudParticipacio.getTitle()==null){
-                    solicitudParticipacio.setTitle("Sense títol");
-                }else{
-                    solicitudParticipacio.setTitle(objetosolicitudParticipacio.getString("title"));
-                }
-
-
-
-                sollicitudsParticipacions.add(solicitudParticipacio);
-            }
-
+            ArrayList<Proves> sollicitudsParticipacions = procesaProves(sollicitudsParticipacionsArray);
+            selection.setSollicitudsParticipacions(sollicitudsParticipacions);
 
             JSONArray convocatoriaProvesEntrevistesArray = objectProves.getJSONArray("convocatoriesProvesEntrevistes");
-            ArrayList<Proves> convocatoriesProvesEntrevistes = new ArrayList<>();
-
-            for ( int j = 0; j < convocatoriaProvesEntrevistesArray.length(); j++) {
-
-                Proves convocatoriaProvesEntrevistes = new Proves();
-
-                JSONObject objectConvocatoria = JSONArraySelections.getJSONObject(j);
-
-                if (convocatoriaProvesEntrevistes.getUrl()==null){
-                    convocatoriaProvesEntrevistes.setUrl("");
-                }else{
-                    convocatoriaProvesEntrevistes.setUrl(objectConvocatoria.getString("url"));
-                }
-                if (convocatoriaProvesEntrevistes.getDoc()==null){
-                    convocatoriaProvesEntrevistes.setDoc("");
-                }else{
-                    convocatoriaProvesEntrevistes.setDoc(objectConvocatoria.getString("doc"));
-                }
-
-                if (convocatoriaProvesEntrevistes.getTitle()==null){
-                    convocatoriaProvesEntrevistes.setTitle("Sense títol");
-                }else{
-                    convocatoriaProvesEntrevistes.setTitle(objectConvocatoria.getString("title"));
-                }
-
-
-
-                convocatoriesProvesEntrevistes.add(convocatoriaProvesEntrevistes);
-            }
+            ArrayList<Proves> convocatoriesProvesEntrevistes = procesaProves(convocatoriaProvesEntrevistesArray);
+            selection.setConvocatoriesProvesEntrevistes(convocatoriesProvesEntrevistes);
 
             selection.setNumExpedient(objectProves.getString("numExpedient"));
             selection.setNombrePlaces(objectProves.getString("nombrePlaces"));
             selection.setFiPresentacio(objectProves.getString("fiPresentacio"));
 
             JSONArray resultatsProvesArray = objectProves.getJSONArray("resultatsProvesEntrevistes");
-            ArrayList<Proves> resultats = new ArrayList<>();
-
-            for ( int j = 0; j < resultatsProvesArray.length(); j++) {
-
-                Proves resultat = new Proves();
-
-                JSONObject objectResultats = JSONArraySelections.getJSONObject(j);
-
-                if (resultat.getUrl()==null){
-                    resultat.setUrl("");
-                }else{
-                    resultat.setUrl(objectResultats.getString("url"));
-                }
-                if (resultat.getDoc()==null){
-                    resultat.setDoc("");
-                }else{
-                    resultat.setDoc(objectResultats.getString("doc"));
-                }
-
-                if (resultat.getTitle()==null){
-                    resultat.setTitle("Sense títol");
-                }else{
-                    resultat.setTitle(objectResultats.getString("title"));
-                }
-
-
-
-
-                resultats.add(resultat);
-            }
+            ArrayList<Proves> resultats = procesaProves(resultatsProvesArray);
+            selection.setResultatsProvesEntrevistes(resultats);
 
             selection.setIniciPresentacio(objectProves.getString("iniciPresentacio"));
 
             JSONArray resultatsConvocatoriesArray = objectProves.getJSONArray("convocatories");
-            ArrayList<Proves> resultatsConvocatories = new ArrayList<>();
-
-            for ( int j = 0; j < resultatsConvocatoriesArray.length(); j++) {
-
-                Proves resultatConvocatoria = new Proves();
-
-                JSONObject objectConvocatories = JSONArraySelections.getJSONObject(j);
-
-                if (resultatConvocatoria.getUrl()==null){
-                    resultatConvocatoria.setUrl("");
-                }else{
-                    resultatConvocatoria.setUrl(objectConvocatories.getString("url"));
-                }
-                if (resultatConvocatoria.getDoc()==null){
-                    resultatConvocatoria.setDoc("");
-                }else{
-                    resultatConvocatoria.setDoc(objectConvocatories.getString("doc"));
-                }
-
-                if (resultatConvocatoria.getTitle()==null){
-                    resultatConvocatoria.setTitle("Sense títol");
-                }else{
-                    resultatConvocatoria.setTitle(objectConvocatories.getString("title"));
-                }
-
-
-
-
-                resultatsConvocatories.add(resultatConvocatoria);
-            }
+            ArrayList<Proves> resultatsConvocatories = procesaProves(resultatsConvocatoriesArray);
+            selection.setConvocatories(resultatsConvocatories);
 
             JSONArray llistatsAdmesosExclososArray = objectProves.getJSONArray("convocatories");
-            ArrayList<Proves> llistatsAdmesosExclosos = new ArrayList<>();
-
-            for ( int j = 0; j < llistatsAdmesosExclososArray.length(); j++) {
-
-                Proves llistaAdmesosExclosos = new Proves();
-
-                JSONObject objectAdmesosExclosos = JSONArraySelections.getJSONObject(j);
-
-                if (llistaAdmesosExclosos.getUrl()==null){
-                    llistaAdmesosExclosos.setUrl("");
-                }else{
-                    llistaAdmesosExclosos.setUrl(objectAdmesosExclosos.getString("url"));
-                }
-                if (llistaAdmesosExclosos.getDoc()==null){
-                    llistaAdmesosExclosos.setDoc("");
-                }else{
-                    llistaAdmesosExclosos.setDoc(objectAdmesosExclosos.getString("doc"));
-                }
-
-                if (llistaAdmesosExclosos.getTitle()==null){
-                    llistaAdmesosExclosos.setTitle("Sense títol");
-                }else{
-                    llistaAdmesosExclosos.setTitle(objectAdmesosExclosos.getString("title"));
-                }
-
-
-
-
-                llistatsAdmesosExclosos.add(llistaAdmesosExclosos);
-            }
+            ArrayList<Proves> llistatsAdmesosExclosos = procesaProves(llistatsAdmesosExclososArray);
+            selection.setLlistatsAdmesosExclosos(llistatsAdmesosExclosos);
 
             selection.setEns(objectProves.getString("ens"));
             selection.setPublicacio(objectProves.getString("publicacio"));
 
             JSONArray resolucionsConvocatoriesArray = objectProves.getJSONArray("resolucionsConvocatories");
-            ArrayList <Proves> resolucionsConvocatories = new ArrayList<>();
-
-            for ( int j = 0; j < resolucionsConvocatoriesArray.length(); j++) {
-
-                Proves resolucioConvocatoria = new Proves();
-
-                JSONObject objectresolucionsConvocatoriesArray = JSONArraySelections.getJSONObject(j);
-
-                if (resolucioConvocatoria.getUrl()==null){
-                    resolucioConvocatoria.setUrl("");
-                }else{
-                    resolucioConvocatoria.setUrl(objectresolucionsConvocatoriesArray.getString("url"));
-                }
-                if (resolucioConvocatoria.getDoc()==null){
-                    resolucioConvocatoria.setDoc("");
-                }else{
-                    resolucioConvocatoria.setDoc(objectresolucionsConvocatoriesArray.getString("doc"));
-                }
-
-                if (resolucioConvocatoria.getTitle()==null){
-                    resolucioConvocatoria.setTitle("Sense títol");
-                }else{
-                    resolucioConvocatoria.setTitle(objectresolucionsConvocatoriesArray.getString("title"));
-                }
-
-
-
-
-                resolucionsConvocatories.add(resolucioConvocatoria);
-            }
+            ArrayList <Proves> resolucionsConvocatories = procesaProves(resolucionsConvocatoriesArray);
+            selection.setResolucionsConvocatories(resolucionsConvocatories);
 
             selection.setDataPublicacio(objectProves.getString("dataPublicacio"));
             selection.setIdioma(objectProves.getString("idioma"));
@@ -283,6 +114,31 @@ public class OfertaPublicaAPI {
     }
 
 
+
+    public static ArrayList<Proves> procesaProves(JSONArray jsonarr) throws JSONException{
+        ArrayList<Proves> sol = new ArrayList<>();
+
+        for ( int j = 0; j < jsonarr.length(); j++) {
+
+            Proves solicitudParticipacio = new Proves();
+            JSONObject objeto = jsonarr.getJSONObject(j);
+            if(objeto.has("url")) {
+                solicitudParticipacio.setUrl(objeto.getString("url"));
+            }
+
+            if(objeto.has("doc")) {
+                solicitudParticipacio.setDoc(objeto.getString("doc"));
+            }
+
+            if(objeto.has("title")) {
+                solicitudParticipacio.setTitle(objeto.getString("title"));
+            }
+
+
+            sol.add(solicitudParticipacio);
+        }
+        return sol;
+    }
 
 
 }
