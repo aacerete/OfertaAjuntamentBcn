@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,12 +38,34 @@ public class DetailsActivityFragment extends Fragment {
             Selection seleccio = (Selection) i.getSerializableExtra("seleccio");
 
             if (seleccio != null) {
+
                 TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
                 tvTitle.setText( seleccio.getConvocatories().get(seleccio.getConvocatories().size()-1).getTitle());
                 TextView tvSubtitle = (TextView) view.findViewById(R.id.tvSubtitle);
                 tvSubtitle.setText( seleccio.getEns() + " - " + seleccio.getTipus());
                 TextView tvDates = (TextView) view.findViewById(R.id.tvDates);
                 tvDates.setText(seleccio.getIniciPresentacio() + " - " + seleccio.getFiPresentacio());
+                TextView tvEstat = (TextView) view.findViewById(R.id.tvEstat) ;
+                tvEstat.setText("prova");
+
+                Date today = new Date();
+                Date fin = new Date(seleccio.getFiPresentacio());
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                sdf.format(today);
+                sdf.format(fin);
+
+                today.compareTo(fin);
+
+                if (today.after(fin)){
+                    tvEstat.setText("Sol·licituds tancades");
+                    tvEstat.setTextColor(getResources().getColor(R.color.colorClosed));
+                }else{
+                    tvEstat.setText("Sol·licituds obertes");
+                    tvEstat.setTextColor(getResources().getColor(R.color.colorOpened));
+
+                }
+
                 // get the listview
                 expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
 
@@ -50,9 +74,9 @@ public class DetailsActivityFragment extends Fragment {
 
                 // Adding child data
                 listDataHeader.add("Convocatories");
-                listDataHeader.add("Sol·licitud Participació");
-                listDataHeader.add("Convocatoria proves");
-                listDataHeader.add("Llistat admesos i exclosos");
+                listDataHeader.add("Sol·licituds de participació");
+                listDataHeader.add("Convocatoria a proves");
+                listDataHeader.add("Anuncis , avisos i llistes d'admesos i exclosos");
                 listDataHeader.add("Resultats de les proves");
                 listDataHeader.add("Resolucions");
 

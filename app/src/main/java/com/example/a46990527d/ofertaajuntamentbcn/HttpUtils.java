@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static android.util.Xml.Encoding.ISO_8859_1;
+
 public class HttpUtils {
     public static String get(String dataUrl) throws IOException {
 
@@ -28,7 +30,7 @@ public class HttpUtils {
     }
 
     private static String readStream(InputStream in) throws IOException {
-        InputStreamReader is = new InputStreamReader(in);
+        InputStreamReader is = new InputStreamReader(in, String.valueOf(ISO_8859_1));
         BufferedReader rd = new BufferedReader(is);
         String line;
         StringBuilder response = new StringBuilder();
