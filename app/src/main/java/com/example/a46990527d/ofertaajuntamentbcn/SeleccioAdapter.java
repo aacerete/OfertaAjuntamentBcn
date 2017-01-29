@@ -1,6 +1,7 @@
 package com.example.a46990527d.ofertaajuntamentbcn;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.text.Html;
 import android.util.Log;
@@ -18,7 +19,13 @@ import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import static android.content.ContentValues.TAG;
 
@@ -56,8 +63,51 @@ public class SeleccioAdapter extends ArrayAdapter {
         String nom = seleccio.getConvocatories().get(seleccio.getConvocatories().size()-1).getTitle();
         TextView NomConvocatoria = (TextView) item.findViewById(R.id.tvNom);
         NomConvocatoria.setText(nom);
+        TextView Places = (TextView) item.findViewById(R.id.tvPlaces);
+        TextView termini = (TextView) item.findViewById(R.id.tvTermini);
+
+        if (isInteger(seleccio.getNombrePlaces())){
+            Places.setText(seleccio.getNombrePlaces() + " plaça/es");
+        }else{
+            Places.setText("");
+        }
+
+        TextView estat = (TextView) item.findViewById(R.id.tvEstatConv);
+
+        Date today = new Date();
+        String date = seleccio.getFiPresentacio();
+        System.out.println(date);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date fin = null;
+        try {
+            fin = sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (today.after(fin)){
+            estat.setText(" Termini exhaurit");
+            estat.setTextColor(Color.RED);
+        }else{
+            estat.setText(seleccio.getFiPresentacio());
+            estat.setTextColor(Color.GREEN);
+        }
 
         // Devolvemos la vista para que se muestre en el ListView.
         return item;
+    }
+
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        // only got here if we didn't return false
+        return true;
     }
 }

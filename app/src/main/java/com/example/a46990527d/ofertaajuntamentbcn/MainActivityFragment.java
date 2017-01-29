@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -29,8 +30,6 @@ public class MainActivityFragment extends Fragment {
 
     public MainActivityFragment() {
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,10 +61,7 @@ public class MainActivityFragment extends Fragment {
         ensAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spConcurs.setAdapter(concursAdapter);
 
-
-
         //button
-
         Button btnCercar = (Button) view.findViewById(R.id.btnCercar);
         btnCercar.setOnClickListener(new View.OnClickListener(){
 
@@ -138,8 +134,12 @@ public class MainActivityFragment extends Fragment {
             progress.hide();
             Intent i = new Intent(mContext, ResultadoActivity.class);
             OfertaAjuntamentBcn my = OfertaAjuntamentBcn.getInstance();
+
+            //Girar arrayList para que aparezcan las convocatorias mas nuevas primero
+            Collections.reverse(resultados);
             my.resultados.clear();
             my.resultados.addAll(resultados);
+
 
             i.putExtra("ajuntament", ent);
             i.putExtra("concurs", concurs);

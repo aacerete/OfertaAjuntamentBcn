@@ -1,6 +1,7 @@
 package com.example.a46990527d.ofertaajuntamentbcn;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,20 +47,24 @@ public class DetailsActivityFragment extends Fragment {
                 tvSubtitle.setText( seleccio.getEns() + " - " + seleccio.getTipus());
                 TextView tvDates = (TextView) view.findViewById(R.id.tvDates);
                 tvDates.setText(seleccio.getIniciPresentacio() + " - " + seleccio.getFiPresentacio());
-                TextView tvEstat = (TextView) view.findViewById(R.id.tvEstat) ;
+                TextView tvEstat = (TextView) view.findViewById(R.id.tvPlaces) ;
                 tvEstat.setText("prova");
 
                 Date today = new Date();
-                Date fin = new Date(seleccio.getFiPresentacio());
+                String date = seleccio.getFiPresentacio();
+                System.out.println(date);
 
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                sdf.format(today);
-                sdf.format(fin);
 
-                today.compareTo(fin);
+                Date fin = null;
+                try {
+                    fin = sdf.parse(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
                 if (today.after(fin)){
-                    tvEstat.setText("Sol·licituds tancades");
+                    tvEstat.setText(" Sol·licituds tancades ");
                     tvEstat.setTextColor(getResources().getColor(R.color.colorClosed));
                 }else{
                     tvEstat.setText("Sol·licituds obertes");
@@ -75,7 +81,7 @@ public class DetailsActivityFragment extends Fragment {
                 // Adding child data
                 listDataHeader.add("Convocatories");
                 listDataHeader.add("Sol·licituds de participació");
-                listDataHeader.add("Convocatoria a proves");
+                listDataHeader.add("Convocatòries a proves i entrevistes");
                 listDataHeader.add("Anuncis , avisos i llistes d'admesos i exclosos");
                 listDataHeader.add("Resultats de les proves");
                 listDataHeader.add("Resolucions");
