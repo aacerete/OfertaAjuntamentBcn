@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +15,6 @@ import android.widget.Spinner;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -109,7 +106,7 @@ public class MainActivityFragment extends Fragment {
 
         @Override
         protected void onPostExecute(ArrayList<Selection> selections) {
-            ArrayList<Selection> resultados = new ArrayList<Selection>();
+            ArrayList<Selection> resultados = new ArrayList<>();
             String ent = spEns.getSelectedItem().toString();
             String concurs = spConcurs.getSelectedItem().toString();
             if(ent.equals("Tots") && concurs.equals("Tots")){
@@ -135,7 +132,9 @@ public class MainActivityFragment extends Fragment {
             }
             progress.hide();
             Intent i = new Intent(mContext, ResultadoActivity.class);
-            i.putExtra("resultados", resultados);
+            OfertaAjuntamentBcn my = OfertaAjuntamentBcn.getInstance();
+            my.resultados.addAll(resultados);
+
             i.putExtra("ajuntament", ent);
             i.putExtra("concurs", concurs);
             startActivity(i);
