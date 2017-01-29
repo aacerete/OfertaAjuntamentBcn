@@ -17,7 +17,6 @@ public class HttpUtils {
 
         URL url = new URL(dataUrl);
         String response = null;
-
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());

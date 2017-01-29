@@ -111,28 +111,34 @@ public class MainActivityFragment extends Fragment {
             String concurs = spConcurs.getSelectedItem().toString();
             if(ent.equals("Tots") && concurs.equals("Tots")){
                 resultados.addAll(selections);
+                System.out.println("sense filtres");
             }else if(ent.equals("Tots") && !concurs.equals("Tots")){
-                for (Selection sel: selections) {
-                    if(ent.equals(sel.getEns())){
-                        resultados.add(sel);
-                    }
-                }
-            }else if(!ent.equals("Tots") && concurs.equals("Tots")){
                 for (Selection sel: selections) {
                     if(concurs.equals(sel.getTipus())){
                         resultados.add(sel);
                     }
                 }
+                System.out.println("filtran concurs");
+            }else if(!ent.equals("Tots") && concurs.equals("Tots")){
+                for (Selection sel: selections) {
+                    if(ent.equals(sel.getEns())){
+                        resultados.add(sel);
+                    }
+                }
+                System.out.println("filtran entitat");
             }else {
                 for (Selection sel : selections) {
                     if (ent.equals(sel.getEns()) && concurs.equals(sel.getTipus())) {
                         resultados.add(sel);
                     }
                 }
+                System.out.println("filtran entitat i concurs");
             }
+            System.out.println("Resultats: "+resultados.size());
             progress.hide();
             Intent i = new Intent(mContext, ResultadoActivity.class);
             OfertaAjuntamentBcn my = OfertaAjuntamentBcn.getInstance();
+            my.resultados.clear();
             my.resultados.addAll(resultados);
 
             i.putExtra("ajuntament", ent);

@@ -2,6 +2,8 @@ package com.example.a46990527d.ofertaajuntamentbcn;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +11,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CharsetEncoder;
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Usuario on 29/01/2017.
@@ -17,12 +28,10 @@ import java.util.ArrayList;
 
 public class SeleccioAdapter extends ArrayAdapter {
     private Context context;
-    private ArrayList<Selection> data;
 
     public SeleccioAdapter (Context context, ArrayList data) {
         super(context, R.layout.lv_concursos_row, data);
         this.context = context;
-        this.data = data;
     }
 
     @NonNull
@@ -33,7 +42,8 @@ public class SeleccioAdapter extends ArrayAdapter {
         // inflater, y después inflamos la vista.
         LayoutInflater inflater = LayoutInflater.from(context);
         View item = inflater.inflate(R.layout.lv_concursos_row, null);
-        Selection seleccio = data.get(position);
+        // Selection seleccio = data.get(position);
+        Selection seleccio = (Selection) getItem(position);
         // A partir de la vista, recogeremos los controles que contiene para
         // poder manipularlos.
         // Recogemos el TextView para mostrar el nombre y establecemos el
@@ -43,8 +53,9 @@ public class SeleccioAdapter extends ArrayAdapter {
 
         // Recogemos el TextView para mostrar el número de celda y lo
         // establecemos.
+        String nom = seleccio.getConvocatories().get(seleccio.getConvocatories().size()-1).getTitle();
         TextView NomConvocatoria = (TextView) item.findViewById(R.id.tvNom);
-        NomConvocatoria.setText(seleccio.getConvocatories().get(seleccio.getConvocatories().size()-1).getTitle());
+        NomConvocatoria.setText(nom);
 
         // Devolvemos la vista para que se muestre en el ListView.
         return item;

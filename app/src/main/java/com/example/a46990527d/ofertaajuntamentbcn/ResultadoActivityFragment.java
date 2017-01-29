@@ -1,11 +1,13 @@
 package com.example.a46990527d.ofertaajuntamentbcn;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -45,6 +47,20 @@ public class ResultadoActivityFragment extends Fragment {
         adapter = new SeleccioAdapter(getContext(), seleccio);
 
         lvConcursos.setAdapter(adapter);
+
+        lvConcursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Selection seleccio = (Selection) adapterView.getItemAtPosition(i);
+
+                Intent intent = new Intent(getContext(), DetailsActivity.class);
+                intent.putExtra("seleccio", seleccio);
+
+                startActivity(intent);
+            }
+        });
+
 
         return view;
     }
