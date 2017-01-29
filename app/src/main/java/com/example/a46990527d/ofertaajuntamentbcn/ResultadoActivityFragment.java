@@ -1,5 +1,6 @@
 package com.example.a46990527d.ofertaajuntamentbcn;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,11 +17,30 @@ import java.util.Arrays;
  */
 public class ResultadoActivityFragment extends Fragment {
 
-    private ArrayList items;
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Selection> seleccio = new ArrayList<>();
+    private SeleccioAdapter adapter;
+
 
 
     public ResultadoActivityFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState == null) {
+            Bundle extras = getActivity().getIntent().getExtras();
+            if(extras == null) {
+                seleccio = new ArrayList<>();
+            } else {
+                ArrayList<Selection> res = (ArrayList<Selection>) extras.getSerializable("resultados");
+                if(res != null) {
+                    seleccio.addAll((ArrayList<Selection>) extras.getSerializable("resultados"));
+                }
+            }
+        } else {
+            seleccio.addAll((ArrayList<Selection>) savedInstanceState.getSerializable("resultados"));
+        }
     }
 
     @Override
@@ -31,17 +51,7 @@ public class ResultadoActivityFragment extends Fragment {
 
         ListView lvConcursos = (ListView) view.findViewById(R.id.lvConcursos);
 
-
-        String[] data = {"oferta 1", "oferta 2", "oferta 3", "oferta 4", "oferta 5", "oferta 6",};
-
-                items = new ArrayList<>(Arrays.asList(data));
-
-        adapter = new ArrayAdapter<>(
-                getContext(),
-                R.layout.lv_concursos_row,
-                R.id.tvEns,
-                items
-        );
+        adapter = new SeleccioAdapter(getContext(), seleccio);
 
         lvConcursos.setAdapter(adapter);
 

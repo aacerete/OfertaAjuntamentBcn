@@ -1,10 +1,12 @@
 package com.example.a46990527d.ofertaajuntamentbcn;
 
+import java.io.Serializable;
+
 /**
  * Created by 46990527d on 13/12/16.
  */
 
-public class Proves {
+public class Proves implements Serializable {
 
     String url;
     String doc;

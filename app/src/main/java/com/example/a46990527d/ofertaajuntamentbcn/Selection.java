@@ -1,12 +1,13 @@
 package com.example.a46990527d.ofertaajuntamentbcn;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by 46990527d on 13/12/16.
  */
 
-public class Selection {
+public class Selection implements Serializable {
 
     private ArrayList<Proves> sollicitudsParticipacions = null;
     private ArrayList<Proves> convocatoriesProvesEntrevistes = null;

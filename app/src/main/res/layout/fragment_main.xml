@@ -94,7 +94,7 @@
         android:text="Cercar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
+        android:id="@+id/btnCercar"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="16dp"
         app:layout_constraintTop_toTopOf="@+id/guideline"
