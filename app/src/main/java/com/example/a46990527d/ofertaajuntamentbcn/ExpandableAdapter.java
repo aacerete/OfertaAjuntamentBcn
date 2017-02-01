@@ -64,12 +64,15 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
             imView.setVisibility(View.INVISIBLE);
         }else{
             txtListChild.setText(child.getTitle());
+            imView.setVisibility(View.VISIBLE);
         }
+
         if (child.getUrl().startsWith("htt")){
+
             imView.setImageResource(R.drawable.ic_action_name);
 
-        }else if(child.getUrl().startsWith("htt")){
-                imView.setImageResource(R.drawable.ic_picture_as_pdf_white_24px);
+        }else {
+            imView.setImageResource(R.drawable.ic_picture_as_pdf_white_24px);
         }
         return convertView;
     }

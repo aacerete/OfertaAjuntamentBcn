@@ -40,6 +40,7 @@ public class MainActivityFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         mContext = getContext();
         progress = new ProgressDialog(getContext());
+        progress.setMessage("Carregant...");
         progress.hide();
 
         String[] ensValues =
