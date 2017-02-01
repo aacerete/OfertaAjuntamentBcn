@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.os.AsyncTask;
 
@@ -27,6 +29,7 @@ public class MainActivityFragment extends Fragment {
     Spinner spConcurs;
     ProgressDialog progress;
     Context mContext;
+    CheckBox cbIns;
 
     public MainActivityFragment() {
     }
@@ -39,14 +42,14 @@ public class MainActivityFragment extends Fragment {
         progress = new ProgressDialog(getContext());
         progress.hide();
 
-        String [] ensValues =
-                { "Tots", "Ajuntament de Barcelona", "Institut Barcelona Esports", "Institut de Cultura de Barcelona", "Institut Municipal d'Educació de Barcelona", "Institut Municipal d'Hisenda",
+        String[] ensValues =
+                {"Tots", "Ajuntament de Barcelona", "Institut Barcelona Esports", "Institut de Cultura de Barcelona", "Institut Municipal d'Educació de Barcelona", "Institut Municipal d'Hisenda",
                         "Institut Municipal d'Informàtica", "Institut Municipal de Mercats de Barcelona", "Institut Municipal del Paissatge Urbà", "Institut Municipal de Serveis Socials de Barcelona",
                         "Patronat Municipal de l'Habitatge de Barcelona"};
 
-        String [] concursValues =
+        String[] concursValues =
                 {"Tots", "Concurs", "Lliure designació", "Mobilitat horitzontal", "Provisió oberta a altres administracions", "Oferta pública", "Promoció interna especial", "Borses de treball",
-                 "Altres processos directius"   };
+                        "Altres processos directius"};
 
         //Spinner 1
         spEns = (Spinner) view.findViewById(R.id.spinnerEns);
@@ -61,9 +64,11 @@ public class MainActivityFragment extends Fragment {
         ensAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spConcurs.setAdapter(concursAdapter);
 
+        CheckBox cbIns = (CheckBox) view.findViewById(R.id.cbIns);
+
         //button
         Button btnCercar = (Button) view.findViewById(R.id.btnCercar);
-        btnCercar.setOnClickListener(new View.OnClickListener(){
+        btnCercar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -78,6 +83,7 @@ public class MainActivityFragment extends Fragment {
                 }
             }
         });
+
 
         return view;
     }
@@ -105,31 +111,37 @@ public class MainActivityFragment extends Fragment {
             ArrayList<Selection> resultados = new ArrayList<>();
             String ent = spEns.getSelectedItem().toString();
             String concurs = spConcurs.getSelectedItem().toString();
-            if(ent.equals("Tots") && concurs.equals("Tots")){
-                resultados.addAll(selections);
-                System.out.println("sense filtres");
-            }else if(ent.equals("Tots") && !concurs.equals("Tots")){
-                for (Selection sel: selections) {
-                    if(concurs.equals(sel.getTipus())){
-                        resultados.add(sel);
+
+
+
+                if(ent.equals("Tots") && concurs.equals("Tots")){
+                    resultados.addAll(selections);
+                    System.out.println("sense filtres");
+
+                }else if(ent.equals("Tots") && !concurs.equals("Tots")){
+                    for (Selection sel: selections) {
+                        if(concurs.equals(sel.getTipus())){
+                            resultados.add(sel);
+                        }
                     }
-                }
-                System.out.println("filtran concurs");
-            }else if(!ent.equals("Tots") && concurs.equals("Tots")){
-                for (Selection sel: selections) {
-                    if(ent.equals(sel.getEns())){
-                        resultados.add(sel);
+                    System.out.println("filtran concurs");
+                }else if(!ent.equals("Tots") && concurs.equals("Tots")){
+                    for (Selection sel: selections) {
+                        if(ent.equals(sel.getEns())){
+                            resultados.add(sel);
+                        }
                     }
-                }
-                System.out.println("filtran entitat");
-            }else {
-                for (Selection sel : selections) {
-                    if (ent.equals(sel.getEns()) && concurs.equals(sel.getTipus())) {
-                        resultados.add(sel);
+                    System.out.println("filtran entitat");
+                }else {
+                    for (Selection sel : selections) {
+                        if (ent.equals(sel.getEns()) && concurs.equals(sel.getTipus())) {
+                            resultados.add(sel);
+                        }
                     }
+                    System.out.println("filtran entitat i concurs");
                 }
-                System.out.println("filtran entitat i concurs");
-            }
+
+
             System.out.println("Resultats: "+resultados.size());
             progress.hide();
             Intent i = new Intent(mContext, ResultadoActivity.class);

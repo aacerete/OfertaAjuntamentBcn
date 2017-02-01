@@ -82,7 +82,7 @@ public class DetailsActivityFragment extends Fragment {
                 listDataHeader.add("Convocatories");
                 listDataHeader.add("Sol·licituds de participació");
                 listDataHeader.add("Convocatòries a proves i entrevistes");
-                listDataHeader.add("Anuncis , avisos i llistes d'admesos i exclosos");
+                listDataHeader.add("Anuncis, avisos i llistes d'admesos i exclosos");
                 listDataHeader.add("Resultats de les proves");
                 listDataHeader.add("Resolucions");
 
@@ -107,11 +107,11 @@ public class DetailsActivityFragment extends Fragment {
                                                 int groupPosition, int childPosition, long id) {
 
                         Proves prova = (Proves) listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
-                        if(prova.getDoc() != null){
+                        if(prova.getDoc().startsWith("htt")){
                             Uri uri = Uri.parse(prova.getDoc()); // missing 'http://' will cause crashed
                             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                             startActivity(intent);
-                        }else if(prova.getUrl() != null){
+                        }else if(prova.getUrl().startsWith("htt")){
                             Uri uri = Uri.parse(prova.getUrl()); // missing 'http://' will cause crashed
                             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                             startActivity(intent);

@@ -1,7 +1,10 @@
 package com.example.a46990527d.ofertaajuntamentbcn;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by 46990527d on 13/12/16.
@@ -147,6 +150,24 @@ public class Selection implements Serializable {
     public void setTipus(String tipus) {
         this.tipus = tipus;
     }
+
+    public boolean isPresentable(){
+
+        Date today = new Date();
+        String date = this.getFiPresentacio();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date fin = null;
+        try {
+            fin = sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (today.after(fin)){
+            return false;
+        }else{
+            return true;
+        }
+           }
 
     @Override
     public String toString() {

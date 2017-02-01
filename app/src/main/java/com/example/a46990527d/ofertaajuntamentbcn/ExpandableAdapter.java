@@ -16,13 +16,14 @@ import android.widget.BaseExpandableListAdapter;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.BaseExpandableListAdapter;
-        import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
-    private List<String> _listDataHeader; // header titles
-    // child data in format of header title, child title
+    private List<String> _listDataHeader; // Cabeceras del expandable
+    // Datos de los hijos, en formato header title, child title
     private HashMap<String, List<Proves>> _listDataChild;
 
     public ExpandableAdapter(Context context, List<String> listDataHeader,
@@ -55,10 +56,21 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_item, null);
         }
 
-        TextView txtListChild = (TextView) convertView
-                .findViewById(R.id.tvTitle);
+        TextView txtListChild = (TextView) convertView.findViewById(R.id.tvTitle);
+        ImageView imView = (ImageView) convertView.findViewById(R.id.imageView) ;
 
-        txtListChild.setText(child.getTitle());
+        if (child.getTitle().isEmpty() || child.getTitle().startsWith("--")){
+            txtListChild.setText("Pendent de publicació");
+            imView.setVisibility(View.INVISIBLE);
+        }else{
+            txtListChild.setText(child.getTitle());
+        }
+        if (child.getUrl().startsWith("htt")){
+            imView.setImageResource(R.drawable.ic_action_name);
+
+        }else if(child.getUrl().startsWith("htt")){
+                imView.setImageResource(R.drawable.ic_picture_as_pdf_white_24px);
+        }
         return convertView;
     }
 

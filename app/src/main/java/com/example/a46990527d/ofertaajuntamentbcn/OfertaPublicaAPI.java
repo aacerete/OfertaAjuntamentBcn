@@ -17,8 +17,6 @@ import java.util.ArrayList;
 public class OfertaPublicaAPI {
 
     private static final String BASE_URL_CA = "https://apidata.barcelona.cat/opendata/oferta-publica/ca";
-    private static final String BASE_URL_ES = "https://apidata.barcelona.cat/opendata/oferta-publica/es";
-
 
     public static ArrayList<Selection> getSelections() {
 
