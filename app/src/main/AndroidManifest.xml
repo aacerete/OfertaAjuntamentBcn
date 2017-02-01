@@ -45,6 +45,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.a46990527d.ofertaajuntamentbcn.ResultadoActivity" />
         </activity>
+
+        <provider
+            android:name=".OfertaAjuntamentBcnContentProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false" />
     </application>
 
 </manifest>
