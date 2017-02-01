@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 46990527d on 13/12/16.
@@ -12,18 +13,18 @@ import java.util.Date;
 
 public class Selection implements Serializable {
 
-    private ArrayList<Proves> sollicitudsParticipacions = null;
-    private ArrayList<Proves> convocatoriesProvesEntrevistes = null;
+    private List<Proves> sollicitudsParticipacions = null;
+    private List<Proves> convocatoriesProvesEntrevistes = null;
     private String numExpedient;
     private String nombrePlaces;
     private String fiPresentacio;
-    private ArrayList<Proves> resultatsProvesEntrevistes = null;
+    private List<Proves> resultatsProvesEntrevistes = null;
     private String iniciPresentacio;
-    private ArrayList<Proves> convocatories = null;
-    private ArrayList<Proves> llistatsAdmesosExclosos = null;
+    private List<Proves> convocatories = null;
+    private List<Proves> llistatsAdmesosExclosos = null;
     private String ens;
     private String publicacio;
-    private ArrayList<Proves> resolucionsConvocatories = null;
+    private List<Proves> resolucionsConvocatories = null;
     private String dataPublicacio;
     private String idioma;
     private String tipus;
@@ -31,15 +32,15 @@ public class Selection implements Serializable {
     public Selection() {
     }
 
-    public void setSollicitudsParticipacions(ArrayList<Proves> sollicitudsParticipacions) {
+    public void setSollicitudsParticipacions(List<Proves> sollicitudsParticipacions) {
         this.sollicitudsParticipacions = sollicitudsParticipacions;
     }
 
-    public ArrayList<Proves> getSollicitudsParticipacions() {
+    public List<Proves> getSollicitudsParticipacions() {
         return sollicitudsParticipacions;
     }
 
-    public ArrayList<Proves> getConvocatoriesProvesEntrevistes() {
+    public List<Proves> getConvocatoriesProvesEntrevistes() {
         return convocatoriesProvesEntrevistes;
     }
 
@@ -63,7 +64,7 @@ public class Selection implements Serializable {
         this.nombrePlaces = nombrePlaces;
     }
 
-    public ArrayList<Proves> getLlistatsAdmesosExclosos() {
+    public List<Proves> getLlistatsAdmesosExclosos() {
         return llistatsAdmesosExclosos;
     }
 
@@ -71,7 +72,7 @@ public class Selection implements Serializable {
         this.llistatsAdmesosExclosos = llistatsAdmesosExclosos;
     }
 
-    public ArrayList<Proves> getConvocatories() {
+    public List<Proves> getConvocatories() {
         return convocatories;
     }
 
@@ -87,7 +88,7 @@ public class Selection implements Serializable {
         this.iniciPresentacio = iniciPresentacio;
     }
 
-    public ArrayList<Proves> getResultatsProvesEntrevistes() {
+    public List<Proves> getResultatsProvesEntrevistes() {
         return resultatsProvesEntrevistes;
     }
 
@@ -127,7 +128,7 @@ public class Selection implements Serializable {
         this.dataPublicacio = dataPublicacio;
     }
 
-    public ArrayList<Proves> getResolucionsConvocatories() {
+    public List<Proves> getResolucionsConvocatories() {
         return resolucionsConvocatories;
     }
 
