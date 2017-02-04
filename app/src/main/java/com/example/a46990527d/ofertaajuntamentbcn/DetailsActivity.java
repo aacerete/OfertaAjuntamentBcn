@@ -11,6 +11,7 @@ import android.view.View;
 
 import nl.littlerobots.cupboard.tools.provider.UriHelper;
 
+import static android.R.drawable.star_big_on;
 import static java.security.AccessController.getContext;
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
@@ -25,7 +26,7 @@ public class DetailsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         Intent i = getIntent();
         if (i != null) {
@@ -39,6 +40,11 @@ public class DetailsActivity extends AppCompatActivity {
                     UriHelper helper = UriHelper.with(OfertaAjuntamentBcnContentProvider.AUTHORITY);
                     Uri selectionUri = helper.getUri(Selection.class);
                     cupboard().withContext(getApplicationContext()).put(selectionUri, Selection.class, seleccio);
+
+                    Snackbar.make(view, "Convocatoria afegida a favorites", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                    fab.setImageResource(star_big_on);
                 }
             }
         });

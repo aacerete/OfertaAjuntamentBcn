@@ -14,7 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:scaleType="fitCenter"
-        android:background="?android:attr/colorPrimary" />
+        android:background="@android:color/black" />
 
     <TextView
         android:text="Cercador d'oferta pública"
