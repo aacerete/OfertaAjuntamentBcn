@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Cercador d'oferta pública de  l'Ajuntament de Barcelona"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -33,7 +33,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
         android:textSize="18sp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Spinner
@@ -48,7 +48,8 @@
         android:layout_marginLeft="16dp"
         app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:spinnerMode="dialog" />
 
     <TextView
         android:text="Cerca per tipus de concurs:"
@@ -64,7 +65,7 @@
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/spinnerEns"
         app:layout_constraintHorizontal_bias="0.46"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="24dp" />
 
     <Spinner
         android:id="@+id/spinnerConcurs"
@@ -77,7 +78,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        android:spinnerMode="dialog" />
 
     <Button
         android:text="Cercar"
@@ -91,22 +93,9 @@
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/cbIns"
-        android:layout_marginTop="8dp"
-        app:layout_constraintVertical_bias="0.71000004" />
-
-    <CheckBox
-        android:text="Només inscripcions obertes"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/cbIns"
-        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/spinnerConcurs"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="0.71000004"
+        android:layout_marginBottom="32dp" />
 
 </android.support.constraint.ConstraintLayout>

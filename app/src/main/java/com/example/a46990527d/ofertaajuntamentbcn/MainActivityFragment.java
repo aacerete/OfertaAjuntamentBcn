@@ -54,18 +54,17 @@ public class MainActivityFragment extends Fragment {
 
         //Spinner 1
         spEns = (Spinner) view.findViewById(R.id.spinnerEns);
-        ArrayAdapter<String> ensAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, ensValues);
-        ensAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        ArrayAdapter<String> ensAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.spinner_item, ensValues);
+
         spEns.setAdapter(ensAdapter);
+
 
 
         //Spinner 2
         spConcurs = (Spinner) view.findViewById(R.id.spinnerConcurs);
-        ArrayAdapter<String> concursAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, concursValues);
-        ensAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spConcurs.setAdapter(concursAdapter);
+        ArrayAdapter<String> concursAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.spinner_item, concursValues);
 
-        CheckBox cbIns = (CheckBox) view.findViewById(R.id.cbIns);
+        spConcurs.setAdapter(concursAdapter);
 
         //button
         Button btnCercar = (Button) view.findViewById(R.id.btnCercar);
