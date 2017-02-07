@@ -13,6 +13,7 @@ import java.util.TimerTask;
  * Created by Usuario on 01/02/2017.
  */
 
+//Activity que es mostrara al carregar la app
 public class SplashScreen extends Activity {
 
         // Set the duration of the splash screen
