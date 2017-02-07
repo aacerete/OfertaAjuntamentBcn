@@ -11,6 +11,7 @@ import java.util.List;
  * Created by 46990527d on 13/12/16.
  */
 
+//classe que conte les diferents convocatories o seleccions
 public class Selection implements Serializable {
 
     private List<Proves> sollicitudsParticipacions = null;

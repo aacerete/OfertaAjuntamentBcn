@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
+
+//Activity amb informació sobre la app
 public class InfoActivity extends AppCompatActivity {
 
     @Override

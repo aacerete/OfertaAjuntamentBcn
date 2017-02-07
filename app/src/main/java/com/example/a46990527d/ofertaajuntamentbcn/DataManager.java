@@ -14,6 +14,7 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
  * Created by 46990527d on 01/02/17.
  */
 
+//Classe per a tractar la informació del cupboard
 public class DataManager {
     private static UriHelper URI_HELPER = UriHelper.with(OfertaAjuntamentBcnContentProvider.AUTHORITY);
     private static Uri SELECTION_URI = URI_HELPER.getUri(Selection.class);

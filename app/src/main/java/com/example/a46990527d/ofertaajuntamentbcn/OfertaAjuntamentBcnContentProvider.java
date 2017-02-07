@@ -13,6 +13,8 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
  * Created by 46990527d on 01/02/17.
  */
 
+
+//content provider
 public class OfertaAjuntamentBcnContentProvider extends CupboardContentProvider {
 
         public static final String AUTHORITY = BuildConfig.APPLICATION_ID + ".provider";

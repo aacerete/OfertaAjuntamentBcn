@@ -28,6 +28,7 @@ public class DetailsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // el fab l'utilitzarem per a gestionar les convocatories favorites
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         Intent i = getIntent();
@@ -41,7 +42,7 @@ public class DetailsActivity extends AppCompatActivity {
             UriHelper helper = UriHelper.with(OfertaAjuntamentBcnContentProvider.AUTHORITY);
             Uri selectionUri = helper.getUri(Selection.class);
 
-
+            //Farem servir el numero d'expedient com a identificador unic per a treballar amb el cupboard
             Selection getdb = cupboard().withContext(getApplicationContext()).query(selectionUri, Selection.class).withSelection("numExpedient = ?", seleccio.getNumExpedient()).get();
             //si la selecció no es troba a la BBDD
             if (getdb == null) {

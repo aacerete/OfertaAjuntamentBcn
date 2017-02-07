@@ -33,6 +33,7 @@ import static android.content.ContentValues.TAG;
  * Created by Usuario on 29/01/2017.
  */
 
+//Adapter per al listView de seleccions
 public class SeleccioAdapter extends ArrayAdapter {
     private Context context;
 
@@ -74,6 +75,8 @@ public class SeleccioAdapter extends ArrayAdapter {
 
         TextView estat = (TextView) item.findViewById(R.id.tvEstatConv);
 
+
+        //Farem servir DATEs per a tractar les dates i distingir entre les que estan obertes i tancades
         Date today = new Date();
         String date = seleccio.getFiPresentacio();
         System.out.println(date);
@@ -107,7 +110,7 @@ public class SeleccioAdapter extends ArrayAdapter {
         } catch(NullPointerException e) {
             return false;
         }
-        // only got here if we didn't return false
+
         return true;
     }
 }

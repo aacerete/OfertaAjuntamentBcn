@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by 46990527d on 13/12/16.
  */
 
+//classe que conté la info de les proves de les diferents seleccions
 public class Proves implements Serializable {
 
     String url;

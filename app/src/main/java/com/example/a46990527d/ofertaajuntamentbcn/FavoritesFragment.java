@@ -16,6 +16,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
+//Fragment que contindrá les convocatories marcades com a favorites
 public class FavoritesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private SelectionCursorAdapter adapter;
@@ -27,12 +28,11 @@ public class FavoritesFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_resultado, container, false);
 
         ListView lvConcursos = (ListView) view.findViewById(R.id.lvConcursos);
-
         adapter = new SelectionCursorAdapter(getContext(), Selection.class);
-
         lvConcursos.setAdapter(adapter);
 
         lvConcursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -48,6 +48,7 @@ public class FavoritesFragment extends Fragment implements LoaderManager.LoaderC
             }
         });
 
+        //Carreuguem els favorits
         getLoaderManager().initLoader(0, null, this);
 
         return view;

@@ -46,6 +46,8 @@ public class MainActivityFragment extends Fragment {
         progress.setMessage("Carregant...");
         progress.hide();
 
+
+        //valors posibles de cerca segons la documentació de la API
         String[] ensValues =
                 {"Tots", "Ajuntament de Barcelona", "Institut Barcelona Esports", "Institut de Cultura de Barcelona", "Institut Municipal d'Educació de Barcelona", "Institut Municipal d'Hisenda",
                         "Institut Municipal d'Informàtica", "Institut Municipal de Mercats de Barcelona", "Institut Municipal del Paissatge Urbà", "Institut Municipal de Serveis Socials de Barcelona",
@@ -55,15 +57,13 @@ public class MainActivityFragment extends Fragment {
                 {"Tots", "Concurs", "Lliure designació", "Mobilitat horitzontal", "Provisió oberta a altres administracions", "Oferta pública", "Promoció interna especial", "Borses de treball",
                         "Altres processos directius"};
 
-        //Spinner 1
+        //Spinner amb els ens (layout personalitzat definit a spinner_item)
         spEns = (Spinner) view.findViewById(R.id.spinnerEns);
         ArrayAdapter<String> ensAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.spinner_item, ensValues);
 
         spEns.setAdapter(ensAdapter);
 
-
-
-        //Spinner 2
+        //Spinner amb els tipus de concurs
         spConcurs = (Spinner) view.findViewById(R.id.spinnerConcurs);
         ArrayAdapter<String> concursAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.spinner_item, concursValues);
 
@@ -71,37 +71,34 @@ public class MainActivityFragment extends Fragment {
 
 
 
-        //button
+        //button per a relaitzar la cerca
         Button btnCercar = (Button) view.findViewById(R.id.btnCercar);
         btnCercar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
                 switch (v.getId()) {
                     case R.id.btnCercar:
 
+                        //comprovem si hi ha connexio
                         ConnectivityManager connMgr = (ConnectivityManager) getActivity()
                                 .getSystemService(Context.CONNECTIVITY_SERVICE);
 
                         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
                         if (networkInfo != null && networkInfo.isConnected()) {
-                            // fetch data
+                            //si no hi ha realitzem la cerca
                             RefreshDataTask tarea = new RefreshDataTask();
                             tarea.execute();
 
                             break;
                         } else {
-                            // dispplay error
+                            // si no mostrem un snackbar que informa que no tenim connexio
                             Snackbar.make(getActivity().findViewById(android.R.id.content), "No es troba la connexió a Internet", Snackbar.LENGTH_LONG)
-
                                     .show();
 
                         }
-
-                        //what to put here
-                        //asynktask
-
 
                         break;
                 }
@@ -113,7 +110,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     //metode que s'executara en segon pla i fara la crida a l'api
-       private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Selection>> {
+    private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Selection>> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -121,14 +118,13 @@ public class MainActivityFragment extends Fragment {
         }
 
         @Override
-                protected ArrayList<Selection> doInBackground(Void... voids) {
 
-                        ArrayList <Selection> result = OfertaPublicaAPI.getSelections();
+        protected ArrayList<Selection> doInBackground(Void... voids) {
 
-                       Log.d("DEBUG", result.toString());
+            ArrayList <Selection> result = OfertaPublicaAPI.getSelections();
 
-                                return result;
-                    }
+            return result;
+        }
 
         @Override
         protected void onPostExecute(ArrayList<Selection> selections) {
@@ -138,36 +134,40 @@ public class MainActivityFragment extends Fragment {
 
 
 
-                if(ent.equals("Tots") && concurs.equals("Tots")){
-                    resultados.addAll(selections);
-                    System.out.println("sense filtres");
+            //Condicions de la cerca
 
-                }else if(ent.equals("Tots") && !concurs.equals("Tots")){
-                    for (Selection sel: selections) {
-                        if(concurs.equals(sel.getTipus())){
-                            resultados.add(sel);
-                        }
+            if(ent.equals("Tots") && concurs.equals("Tots")){
+                resultados.addAll(selections);
+
+
+            }else if(ent.equals("Tots") && !concurs.equals("Tots")){
+                for (Selection sel: selections) {
+                    if(concurs.equals(sel.getTipus())){
+                        resultados.add(sel);
                     }
-                    System.out.println("filtran concurs");
-                }else if(!ent.equals("Tots") && concurs.equals("Tots")){
-                    for (Selection sel: selections) {
-                        if(ent.equals(sel.getEns())){
-                            resultados.add(sel);
-                        }
-                    }
-                    System.out.println("filtran entitat");
-                }else {
-                    for (Selection sel : selections) {
-                        if (ent.equals(sel.getEns()) && concurs.equals(sel.getTipus())) {
-                            resultados.add(sel);
-                        }
-                    }
-                    System.out.println("filtran entitat i concurs");
                 }
 
+            }else if(!ent.equals("Tots") && concurs.equals("Tots")){
+                for (Selection sel: selections) {
+                    if(ent.equals(sel.getEns())){
+                        resultados.add(sel);
+                    }
+                }
 
-            System.out.println("Resultats: "+resultados.size());
+            }else {
+                for (Selection sel : selections) {
+                    if (ent.equals(sel.getEns()) && concurs.equals(sel.getTipus())) {
+                        resultados.add(sel);
+                    }
+                }
+
+            }
+
+
+
             progress.hide();
+
+            //preparem la apertura de la activity de resultats
             Intent i = new Intent(mContext, ResultadoActivity.class);
             OfertaAjuntamentBcn my = OfertaAjuntamentBcn.getInstance();
 
@@ -176,7 +176,7 @@ public class MainActivityFragment extends Fragment {
             my.resultados.clear();
             my.resultados.addAll(resultados);
 
-
+            //iniciem
             i.putExtra("ajuntament", ent);
             i.putExtra("concurs", concurs);
             startActivity(i);

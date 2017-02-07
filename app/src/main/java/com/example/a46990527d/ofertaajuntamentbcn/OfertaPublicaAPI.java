@@ -14,6 +14,8 @@ import java.util.ArrayList;
  * Created by 46990527d on 13/12/16.
  */
 
+
+// Classe per gestionar crides a la API
 public class OfertaPublicaAPI {
 
     private static final String BASE_URL_CA = "https://apidata.barcelona.cat/opendata/oferta-publica/ca";

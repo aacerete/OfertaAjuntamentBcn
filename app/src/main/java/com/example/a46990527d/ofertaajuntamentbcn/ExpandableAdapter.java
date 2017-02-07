@@ -19,6 +19,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+//adaptador de la expandableListView que es troba al detailsActivity
 public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
@@ -59,7 +61,9 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         TextView txtListChild = (TextView) convertView.findViewById(R.id.tvTitle);
         ImageView imView = (ImageView) convertView.findViewById(R.id.imageView) ;
 
+        //Si no hi ha info als childs , o comencen amb caracters
         if (child.getTitle().isEmpty() || child.getTitle().startsWith("--")){
+            //mostrem que està pendent de publicar i amaguem les icones de pdf o http
             txtListChild.setText("Pendent de publicació");
             imView.setVisibility(View.INVISIBLE);
         }else{
@@ -67,11 +71,13 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
             imView.setVisibility(View.VISIBLE);
         }
 
+        //si comenza amb una uri valida
         if (child.getUrl().startsWith("htt")){
-
+            //mostrem la icona de http
             imView.setImageResource(R.drawable.ic_action_name);
 
         }else {
+            //mostrem icona de pdf
             imView.setImageResource(R.drawable.ic_picture_as_pdf_white_24px);
         }
         return convertView;

@@ -14,6 +14,8 @@ import java.net.URL;
 
 import static android.util.Xml.Encoding.ISO_8859_1;
 
+
+//Classe hhtpUtils per a realitzar la conexio
 public class HttpUtils {
     public static String get(String dataUrl) throws IOException {
 

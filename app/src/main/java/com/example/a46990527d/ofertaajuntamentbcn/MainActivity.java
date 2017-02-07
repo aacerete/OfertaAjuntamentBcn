@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//activity principal
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //view pager per a navegar entre cerca i convocatories favorites
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
     }
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Adaptador de la classe viewPager amb els seus metodes
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();

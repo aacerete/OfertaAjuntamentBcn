@@ -12,15 +12,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-/**
- * A placeholder fragment containing a simple view.
- */
+//Fragment que conté els listviews amb les diferents convocatories
 public class ResultadoActivityFragment extends Fragment {
 
     private ArrayList<Selection> seleccio = new ArrayList<>();
     private SeleccioAdapter adapter;
-
-
 
     public ResultadoActivityFragment() {
     }
@@ -36,6 +32,7 @@ public class ResultadoActivityFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_resultado, container, false);
 
+        //emmagatzem els resultats a través de la application
         OfertaAjuntamentBcn my = OfertaAjuntamentBcn.getInstance();
         if(my.resultados != null){
             seleccio.addAll(my.resultados);
@@ -43,11 +40,10 @@ public class ResultadoActivityFragment extends Fragment {
 
 
         ListView lvConcursos = (ListView) view.findViewById(R.id.lvConcursos);
-
         adapter = new SeleccioAdapter(getContext(), seleccio);
-
         lvConcursos.setAdapter(adapter);
 
+        //obrim el details activity al fer click en qualsevol convocatoria
         lvConcursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

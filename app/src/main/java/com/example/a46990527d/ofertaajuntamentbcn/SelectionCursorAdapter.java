@@ -17,6 +17,7 @@ import static com.example.a46990527d.ofertaajuntamentbcn.SeleccioAdapter.isInteg
  * Created by 46990527d on 01/02/17.
  */
 
+//Adapter per al cupboard
 public class SelectionCursorAdapter extends CupboardCursorAdapter<Selection> {
 
     public SelectionCursorAdapter(Context context, Class<Selection> entityClass) {

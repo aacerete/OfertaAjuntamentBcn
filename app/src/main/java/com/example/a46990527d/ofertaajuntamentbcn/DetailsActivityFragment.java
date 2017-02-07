@@ -36,6 +36,7 @@ public class DetailsActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
         Intent i = getActivity().getIntent();
+
         if (i != null) {
             Selection seleccio = (Selection) i.getSerializableExtra("seleccio");
 
@@ -50,6 +51,7 @@ public class DetailsActivityFragment extends Fragment {
                 TextView tvEstat = (TextView) view.findViewById(R.id.tvPlaces) ;
                 tvEstat.setText("prova");
 
+                //Tractem les dates per a comprovar les obertes de les tancades.
                 Date today = new Date();
                 String date = seleccio.getFiPresentacio();
                 System.out.println(date);
@@ -72,9 +74,10 @@ public class DetailsActivityFragment extends Fragment {
 
                 }
 
-                // get the listview
+                // Obtenim l'expandableListView
                 expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
 
+                //Dades dels headers i els diferents fills
                 listDataHeader = new ArrayList<String>();
                 listDataChild = new HashMap<String, List<Proves>>();
 
@@ -96,17 +99,19 @@ public class DetailsActivityFragment extends Fragment {
 
                 listAdapter = new ExpandableAdapter(getContext(), listDataHeader, listDataChild);
 
-                // setting list adapter
+                // setejem l'adapter
                 expListView.setAdapter(listAdapter);
 
-
+                //Al fer click al header es motraran els fills
                 expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
+                    //Al fer click a un fill obrirem una activity implicita que obria pdf o direccio de internet
                     @Override
                     public boolean onChildClick(ExpandableListView parent, View v,
                                                 int groupPosition, int childPosition, long id) {
 
                         Proves prova = (Proves) listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+
                         if(prova.getDoc().startsWith("htt")){
                             Uri uri = Uri.parse(prova.getDoc()); // missing 'http://' will cause crashed
                             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -119,7 +124,7 @@ public class DetailsActivityFragment extends Fragment {
                         return false;
                     }
                 });
-                //updateUi(seleccio);
+
             }
         }
         return view;
