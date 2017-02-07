@@ -3,6 +3,9 @@ package com.example.a46990527d.ofertaajuntamentbcn;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,6 +69,8 @@ public class MainActivityFragment extends Fragment {
 
         spConcurs.setAdapter(concursAdapter);
 
+
+
         //button
         Button btnCercar = (Button) view.findViewById(R.id.btnCercar);
         btnCercar.setOnClickListener(new View.OnClickListener() {
@@ -74,10 +79,29 @@ public class MainActivityFragment extends Fragment {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnCercar:
+
+                        ConnectivityManager connMgr = (ConnectivityManager) getActivity()
+                                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+                        if (networkInfo != null && networkInfo.isConnected()) {
+                            // fetch data
+                            RefreshDataTask tarea = new RefreshDataTask();
+                            tarea.execute();
+
+                            break;
+                        } else {
+                            // dispplay error
+                            Snackbar.make(getActivity().findViewById(android.R.id.content), "No es troba la connexió a Internet", Snackbar.LENGTH_LONG)
+
+                                    .show();
+
+                        }
+
                         //what to put here
                         //asynktask
-                        RefreshDataTask tarea = new RefreshDataTask();
-                        tarea.execute();
+
 
                         break;
                 }
@@ -158,6 +182,8 @@ public class MainActivityFragment extends Fragment {
             startActivity(i);
         }
     }
+
+
 
 
 
