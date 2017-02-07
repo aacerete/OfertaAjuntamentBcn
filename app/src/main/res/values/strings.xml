@@ -6,4 +6,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_informacio">InformacioActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="info_app">"Aquesta aplicació conté informació sobre els processos selectius de personal de nou ingrés a l'Ajuntament de Barcelona i les entitats municipals adherides al seu sistema de selecció de personal, amb informació de les places vacants en cada moment, els requisits i els terminis per participar en els processos de selecció, i el desenvolupament dels processos. Per a aquelles convocatòries en les quals no sigui possible la inscripció telemàtica, es podrà fer en suport paper en les Oficines d’Atenció a la Ciutadà (OAC) de l’Ajuntament de Barcelona, o bé trametre-les per qualsevol dels mitjans que estableix l’article 38.4 de la Llei 30/1992, de 26 de novembre, de règim jurídic de les administracions públiques i del procediment administratiu comú, modificada per la Llei 4/1999, de 13 de gener, en el termini de vint dies naturals a comptar de l'endemà de la seva publicació.</string>
+    <string name="title_activity_info">InfoActivity</string>
 </resources>
